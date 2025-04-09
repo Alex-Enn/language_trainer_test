@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Card
 from .forms import CardForm 
 
@@ -22,3 +22,9 @@ def card_list(request):
 def practice(request):
     cards = Card.objects.all()
     return render(request, 'cards/practice.html', {'cards': cards})
+
+def delete_card(request, card_id):
+    card = get_object_or_404(Card, id=card_id)
+    if request.method == 'POST':
+        card.delete()
+    return redirect('card_list')
