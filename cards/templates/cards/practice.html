@@ -1,0 +1,16 @@
+{% extends 'cards/base.html' %}
+
+{% block content %}
+<h2>Тренировка</h2>
+<div class="flashcards">
+    {% for card in cards %}
+    <div class="card">
+        <div class="front">{{ card.word }}</div>
+        <div class="back">
+            <img src="{{ card.image.url }}" width="150">
+            <p>{{ card.translation }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
