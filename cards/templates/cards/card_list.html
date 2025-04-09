@@ -1,19 +1,24 @@
 {% extends 'cards/base.html' %}
+{% load static %}
 
 {% block content %}
 <h2>Все карточки</h2>
-<table>
-    <tr>
-        <th>Слово</th>
-        <th>Иллюстрация</th>
-        <th>Перевод</th>
-    </tr>
-    {% for card in cards %}
-    <tr>
-        <td>{{ card.word }}</td>
-        <td><img src="{{ card.image.url }}" width="100"></td>
-        <td>{{ card.translation }}</td>
-    </tr>
-    {% endfor %}
+<table class="cards-table">
+    <thead>
+        <tr>
+            <th class="text-center">Слово на английском</th>
+            <th class="text-center">Иллюстрация</th>
+            <th class="text-center">Перевод с английского</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for card in cards %}
+        <tr>
+            <td class="text-center">{{ card.word }}</td>
+            <td class="text-center"><img src="{{ card.image.url }}" width="100"></td>
+            <td class="text-center">{{ card.translation }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
 {% endblock %}

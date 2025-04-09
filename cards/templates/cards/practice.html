@@ -1,16 +1,29 @@
 {% extends 'cards/base.html' %}
+{% load static %}
 
 {% block content %}
 <h2>Тренировка</h2>
-<div class="flashcards">
+<div class="flashcards-container">
     {% for card in cards %}
-    <div class="card">
-        <div class="front">{{ card.word }}</div>
-        <div class="back">
-            <img src="{{ card.image.url }}" width="150">
-            <p>{{ card.translation }}</p>
+    <div class="flashcard" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+            <div class="flashcard-front">
+                <div class="flashcard-content">{{ card.word }}</div>
+            </div>
+            <div class="flashcard-back">
+                <div class="flashcard-content">
+                    <img src="{{ card.image.url }}" alt="{{ card.word }}">
+                    <p>{{ card.translation }}</p>
+                </div>
+            </div>
         </div>
     </div>
     {% endfor %}
 </div>
+
+<script>
+function flipCard(element) {
+    element.classList.toggle('flipped');
+}
+</script>
 {% endblock %}
